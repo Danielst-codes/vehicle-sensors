@@ -12,6 +12,8 @@ public class SecuritySystem {
     private BufferFIFO buffer;
     private SensorData lastData;
     private List<SensorData> pastData;
+    private static final double UMBRAL_AMBERTENCIA = 20.0;
+    private static final double  UMBRAL_CRITICO = 50.0;
 
     public SecuritySystem(BufferFIFO buffer){
         this.buffer = buffer;
@@ -23,13 +25,28 @@ public class SecuritySystem {
         SensorData currentData = buffer.obtenerDatos();
         
         if (currentData == null){
-            return;
+            return; 
         }
 
         try {
             if (this.lastData != null) {
-                double diferencia = currentData.getVelocidad() - this.lastData.getVelocidad();
+                double velocidadDelta = currentData.getVelocidad() - this.lastData.getVelocidad();
+                if (velocidadDelta > UMBRAL_CRITICO){
+                    gestionarAtaqueCritico(velocidadDelta);
+                }else if (velocidadDelta >= UMBRAL_AMBERTENCIA) {
+                    gestionarAdvertencia(velocidadDelta);
+                }
             }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
+    }
+
+    private void gestionarAdvertencia(double velocidadDelta) {
+        System.out.println("[WARNING] inyeccion delta: " + velocidadDelta);
+    }
+
+    private void gestionarAtaqueCritico(double velocidadDelta) {
+        System.out.println("[CRITICAL] inyeccion delta: " + velocidadDelta);
     }
 }
