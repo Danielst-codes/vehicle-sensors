@@ -44,9 +44,9 @@ class Car:
             if self.speed > 130:
                 if not self.alerta_enviada:
                     enviar_ahora = True
-                    self.alerta_enviada = True  # "Bloqueamos" nuevos avisos de esta emergencia
+                    self.alerta_enviada = True  
             else:
-                # Si bajamos de 130, reseteamos el interruptor para la próxima vez
+                
                 self.alerta_enviada = False
 
             # --- SECCIÓN 3: EL ENVÍO REAL ---
@@ -138,7 +138,7 @@ class Car:
             print("¡EMERGENCIA! Motor sobrecalentado (>130°C). Deteniendo... 🔥")
         elif self.temperature <130 and self.stop_temperature == True:
             print("Motor enfriado. El sistema de seguridad permite reanudar... ✅")
-            self.stop_temperature = False  # 'Limpiamos' la memoria 🧹
+            self.stop_temperature = False  # 'Limpiamos' la memoria 
             self.resume_drive()
     
     def verificar_objetos(self):
