@@ -7,7 +7,7 @@ import time
 
 class SensorManager:
     def __init__(self):
-        # --- Outputs (LEDs / actuators) ---
+        # LEDs / actuators-
         self.brake_led = LED(5)
         self.slow_led = LED(6)       # Green
         self.normal_led = LED(13)    # Yellow

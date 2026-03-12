@@ -28,11 +28,11 @@ class Car:
     def readData(self):
         contador = 0
         while True: 
-            # --- SECCIÓN 1: TIEMPO REAL (Cada 0.1s) ---
+            # TIEMPO REAL (Cada 0.1s) 
             self.verificar_objetos() 
             self.verificar_personas()
 
-            # --- SECCIÓN 2: LÓGICA DE ENVÍO 🛰️ ---
+            # LÓGICA DE ENVÍO 
             enviar_ahora = False
 
             # Caso A: Han pasado 10 segundos (Reporte normal)
@@ -63,7 +63,7 @@ class Car:
                 else:
                     print("Modo local: Datos leídos pero no enviados. 🛰️")
 
-            # Pausa obligatoria de 0.1s para que la CPU respire 🌬️
+            # Pausa obligatoria de 0.1s para que la CPU pare
             time.sleep(0.1)
             contador += 1
 
@@ -78,7 +78,6 @@ class Car:
 
 
     def update_speed_leds(self):
-        """Turn on the correct speed LED based on current speed."""
         self.slow_led.off()
         self.normal_led.off()
         self.fast_led.off()
@@ -150,10 +149,8 @@ class Car:
         else:
             self.object_led.off()
             self.resume_drive()
-            
-    # Línea 140 (aprox)
+ 
     def verificar_personas(self):
-        # ¡Aquí es donde debe ir la sangría! (4 espacios a la derecha)
         hay_persona = self.sensor_manager.motion_sensor.motion_detected 
 
         if hay_persona:

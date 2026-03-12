@@ -6,7 +6,6 @@ import threading
 
 IP_ORDENADOR = '192.168.1.38'
 mensajero_datos = MessagesSender(IP_ORDENADOR, queue_name='telemetria_coche')
-#mensajero_datos.conectar()
 
 
 sensor_manager = SensorManager()
