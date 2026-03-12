@@ -14,28 +14,27 @@ public class RabbitMQOrdenesSender {
     private Channel channel;
     ObjectMapper traductor = new ObjectMapper();
 
-    public RabbitMQOrdenesSender(){
-        try {
-            ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost("localhost");
-            factory.setPort(5672);
+    public RabbitMQOrdenesSender() {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("rabbitmq");
+        factory.setPort(5672);
 
-            this.connection = factory.newConnection();
-            this.channel = connection.createChannel();
-
-            this.channel.queueDeclare(QUEUE_NAME, false, false,false, null);
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+            while (this.channel == null) {
+                try {
+                    this.connection = factory.newConnection();
+                    this.channel = connection.createChannel();
+                    this.channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+                } catch (Exception e) {
+                    // No imprimas el stacktrace aquí para no ensuciar la consola
+                    try { Thread.sleep(2000); } catch (InterruptedException ie) {}
+                }
+            }   
     }
-
-    public void enviarOrden(String orden){
+    public void enviarOrden(Double frenar){
         try{
-            byte[] mensaje = traductor.writeValueAsBytes(orden);
+            byte[] mensaje = traductor.writeValueAsBytes(frenar);
             channel.basicPublish("",QUEUE_NAME, null, mensaje);
-            System.out.println("⚠️ mensaje enviado");
+
         }catch (Exception e){
             e.printStackTrace();
         }
