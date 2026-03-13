@@ -32,7 +32,63 @@ Los componentes físicos interactúan directamente con los pines GPIO de la plac
 
 Estos indicadores permiten alertar visualmente sobre la velocidad, presencia de objetos, detección de peatones y paradas de emergencia.
 
+# DOCUMENTACIÓN DEL SISTEMA: MONITORIZACIÓN Y SEGURIDAD IoT
 
+## 1. Arquitectura de Hardware
+
+El sistema físico está montado sobre una *protoboard* e integrado en un microordenador que actúa como el cerebro computacional (*edge computing*) del vehículo, procesando datos en el origen.
+
+El diseño esquemático, el enrutamiento PCB y la exportación de la lista de materiales han sido modelados utilizando **Fritzing**, estandarizando la documentación visual del circuito.
+
+### 1.1 Lista de Materiales (BOM)
+
+Los componentes físicos interactúan directamente con los pines GPIO de la placa:
+
+- **Microordenador:** Raspberry Pi 5.  
+  > **Nota de diseño:** En los esquemáticos de Fritzing se representa utilizando el modelo Raspberry Pi 4 Model B debido a disponibilidad de librerías, pero ambas placas comparten exactamente el mismo pinout GPIO.
+
+- **Sensores de Entorno y Seguridad:**
+  - **HC-SR04:** sensor ultrasónico de distancia para detectar objetos y evitar colisiones.
+  - **HC-SR501:** sensor de movimiento PIR para identificación de peatones.
+  - **DHT11:** sensor de temperatura y humedad para monitorización del clima y sobrecalentamiento del motor.
+  - **MLX90614:** sensor de temperatura por infrarrojos conectado vía I2C mediante los pines SDA/SCL.
+
+- **Control de Usuario (Input):**
+  - **KY-040:** *rotary encoder* con botón integrado para simular el freno o los controles manuales del usuario.
+
+- **Indicadores Visuales (Output):**
+  - Panel de LEDs de estado:
+    - Rojo (633 nm)
+    - Verde (555 nm)
+    - Amarillo (595 nm)
+    - Azul (525 nm)
+    - Blanco (4500 K)
+
+Estos indicadores permiten alertar visualmente sobre la velocidad, presencia de objetos, detección de peatones y paradas de emergencia.
+
+
+## Cableado del sistema
+
+A continuación se muestra el mapeo de pines utilizado entre la Raspberry Pi 5 y los distintos componentes del sistema.
+
+> **Nota:** algunos componentes del esquemático en Fritzing han sido representados mediante módulos equivalentes por limitaciones de la librería disponible. En caso de discrepancia visual, el cableado descrito en las siguientes tablas corresponde al montaje real del proyecto.
+
+### LEDs
+
+| Componente | Función | GPIO (BCM) | Pin Físico | Resistencia |
+|------------|---------|------------|------------|-------------|
+| LED Persona | Alerta azul | GPIO 18 | Pin 12 | 47 Ω |
+| LED Objeto | Alerta blanca | GPIO 12 | Pin 32 | 47 Ω |
+| LED Verde | Velocidad lenta | GPIO 6 | Pin 31 | 47 Ω |
+| LED Amarillo | Velocidad media | GPIO 13 | Pin 33 | 220 Ω |
+| LED Rojo | Velocidad rápida | GPIO 26 | Pin 37 | 220 Ω |
+| LED Freno | Parada total | GPIO 5 | Pin 29 | 220 Ω |
+
+### Encoder
+
+| Componente | Pin del Encoder | GPIO (BCM) | Pin Físico | Función |
+|------------|------------------|------------|------------|---------|
+Incorporación de un motor de corriente continua cuyas RPM dependan de las lecturas y eventos del backend, permitiendo simulaciones físicas de aceleración y frenado remoto.
 ## Cableado del sistema
 
 A continuación se muestra el mapeo de pines utilizado entre la Raspberry Pi 5 y los distintos componentes del sistema.
