@@ -25,7 +25,6 @@ public class RabbitMQOrdenesSender {
                     this.channel = connection.createChannel();
                     this.channel.queueDeclare(QUEUE_NAME, false, false, false, null);
                 } catch (Exception e) {
-                    // No imprimas el stacktrace aquí para no ensuciar la consola
                     try { Thread.sleep(2000); } catch (InterruptedException ie) {}
                 }
             }   
