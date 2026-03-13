@@ -82,8 +82,8 @@ vehicle-sensors/
 ### 1. Preparar el entorno Python en la Raspberry Pi
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv env
+source env/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -102,10 +102,8 @@ docker compose up --build -d
 ### 4. Ejecutar la parte hardware
 
 ```bash
-python3 hardware/main.py
+python3 main.py
 ```
-
----
 
 ## Ejecución del sistema
 
