@@ -37,6 +37,8 @@ Estos indicadores permiten alertar visualmente sobre la velocidad, presencia de 
 
 A continuación se muestra el mapeo de pines utilizado entre la Raspberry Pi 5 y los distintos componentes del sistema.
 
+> **Nota:** algunos componentes del esquemático en Fritzing han sido representados mediante módulos equivalentes por limitaciones de la librería disponible. En caso de discrepancia visual, el cableado descrito en las siguientes tablas corresponde al montaje real del proyecto.
+
 ### LEDs
 
 | Componente | Función | GPIO (BCM) | Pin Físico | Resistencia |
@@ -48,23 +50,15 @@ A continuación se muestra el mapeo de pines utilizado entre la Raspberry Pi 5 y
 | LED Rojo | Velocidad rápida | GPIO 26 | Pin 37 | 220 Ω |
 | LED Freno | Parada total | GPIO 5 | Pin 29 | 220 Ω |
 
-### Sensor de temperatura DHT11
-
-| Componente | Función | GPIO (BCM) | Pin Físico | Notas |
-|------------|---------|------------|------------|-------|
-| VCC | Alimentación | - | Pin 4 | 5V directo |
-| OUT | Señal | GPIO 4 | Pin 7 | Línea de datos |
-| GND | Tierra | - | Pin 14 | Masa común |
-
 ### Encoder
 
-| Componente | Pin del Encoder | Pin Físico RPi 5 | GPIO (BCM) | Función |
-|------------|------------------|------------------|------------|---------|
-| Alimentación | VCC | Pin 1 | - | 3.3V |
-| Tierra | GND | Pin 9 | - | Masa |
-| Reloj | CLK | Pin 11 | GPIO 17 | Pulso A |
-| Datos | DT | Pin 13 | GPIO 27 | Pulso B |
-| Botón | SW | Pin 15 | GPIO 22 | Pulsador |
+| Componente | Pin del Encoder | GPIO (BCM) | Pin Físico | Función |
+|------------|------------------|------------|------------|---------|
+| Alimentación | VCC | - | Pin 1 | 3.3V |
+| Tierra | GND | - | Pin 9 | Masa |
+| Reloj | CLK | GPIO 17 | Pin 11 | Pulso A |
+| Datos | DT | GPIO 27 | Pin 13 | Pulso B |
+| Botón | SW | GPIO 22 | Pin 15 | Pulsador |
 
 ### Sensor de Proximidad (HC-SR04)
 
@@ -75,13 +69,20 @@ A continuación se muestra el mapeo de pines utilizado entre la Raspberry Pi 5 y
 | Echo | Receptor | GPIO 24 | Pin 18 | Divisor de tensión 1k/2k |
 | GND | Tierra | - | Pin 6 | Masa común |
 
-
 ### Sensor PIR (HC-SR501)
 
 | Componente | Función | GPIO (BCM) | Pin Físico | Notas |
 |------------|---------|------------|------------|-------|
 | VCC | Alimentación | - | Pin 4 | 5V directo |
 | OUT | Señal | GPIO 25 | Pin 22 | Señal de salida |
+| GND | Tierra | - | Pin 14 | Masa común |
+
+### Sensor de temperatura DHT11
+
+| Componente | Función | GPIO (BCM) | Pin Físico | Notas |
+|------------|---------|------------|------------|-------|
+| VCC | Alimentación | - | Pin 4 | 5V directo |
+| OUT | Señal | GPIO 4 | Pin 7 | Línea de datos |
 | GND | Tierra | - | Pin 14 | Masa común |
 
 ---
