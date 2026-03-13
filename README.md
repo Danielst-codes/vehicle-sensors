@@ -152,6 +152,4 @@ Actualmente el proyecto incluye:
 
 ---
 
-## Autor
-
 Proyecto desarrollado como práctica de integración entre **hardware**, **programación**, **mensajería distribuida** y **backend** en un entorno IoT.

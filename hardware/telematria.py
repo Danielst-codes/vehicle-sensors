@@ -14,7 +14,7 @@ led_persona = LED(18)   # Azul 🔵
 led_objeto = LED(16)    # Blanco ⚪
 
 # Trigger=23, Echo=24. Ponemos el límite (threshold) a 20cm (0.2m)
-# 'queue_len' es cuántas lecturas promedia. Si lo bajamos, es más rápido pero más nervioso.
+# 'queue_len' es cuántas lecturas promedia. Si lo bajamos, es más rápido 
 sensor_distancia = DistanceSensor(echo=24, trigger=23, threshold_distance=0.15)
 sensor_pir = MotionSensor(25)
 encoder = RotaryEncoder(17, 27) # Quitamos el max_steps para manejarlo manual

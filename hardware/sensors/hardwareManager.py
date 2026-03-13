@@ -31,7 +31,6 @@ class SensorManager:
             try:
                 return self.climate_sensor.temperature, self.climate_sensor.humidity
             except RuntimeError:
-                # DHT11 readings often fail sometimes
                 return None, None
 
     def connect_car(self, car):
