@@ -10,17 +10,8 @@ Este sistema permite capturar eventos del entorno, enviar datos desde el hardwar
 
 ### Montaje sobre protoboard
 
-> Aquí puedes añadir una foto real de tu montaje físico.
+![Montaje físico en protoboard](Documentacion/esquemas/monateje.jpeg)
 
-![Montaje físico en protoboard](docs/img/protoboard.jpg)
-
-### Diseño PCB
-
-> Aquí puedes añadir la imagen de tu PCB exportada o capturada desde Fritzing.
-
-![Diseño PCB](docs/img/pcb.png)
-
----
 
 ## ¿Qué hace este proyecto?
 
