@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"   # El buzón por donde el Coche enviará los datos
+      - "15672:15672" # El panel de administración web
+ 
+
+  coche-simulador:
+    build: .
+    depends_on:
+      - rabbitmq
+    volumes:
+      - "/home/daniel/Escritorio/sensores vehiculos/logs:/app/logs"
