@@ -32,6 +32,58 @@ Los componentes físicos interactúan directamente con los pines GPIO de la plac
 
 Estos indicadores permiten alertar visualmente sobre la velocidad, presencia de objetos, detección de peatones y paradas de emergencia.
 
+
+## Cableado del sistema
+
+A continuación se muestra el mapeo de pines utilizado entre la Raspberry Pi 5 y los distintos componentes del sistema.
+
+### LEDs
+
+| Componente | Función | GPIO (BCM) | Pin Físico | Resistencia |
+|------------|---------|------------|------------|-------------|
+| LED Persona | Alerta azul | GPIO 18 | Pin 12 | 47 Ω |
+| LED Objeto | Alerta blanca | GPIO 12 | Pin 32 | 47 Ω |
+| LED Verde | Velocidad lenta | GPIO 6 | Pin 31 | 47 Ω |
+| LED Amarillo | Velocidad media | GPIO 13 | Pin 33 | 220 Ω |
+| LED Rojo | Velocidad rápida | GPIO 26 | Pin 37 | 220 Ω |
+| LED Freno | Parada total | GPIO 5 | Pin 29 | 220 Ω |
+
+### Sensor de temperatura DHT11
+
+| Componente | Función | GPIO (BCM) | Pin Físico | Notas |
+|------------|---------|------------|------------|-------|
+| VCC | Alimentación | - | Pin 4 | 5V directo |
+| OUT | Señal | GPIO 4 | Pin 7 | Línea de datos |
+| GND | Tierra | - | Pin 14 | Masa común |
+
+### Encoder
+
+| Componente | Pin del Encoder | Pin Físico RPi 5 | GPIO (BCM) | Función |
+|------------|------------------|------------------|------------|---------|
+| Alimentación | VCC | Pin 1 | - | 3.3V |
+| Tierra | GND | Pin 9 | - | Masa |
+| Reloj | CLK | Pin 11 | GPIO 17 | Pulso A |
+| Datos | DT | Pin 13 | GPIO 27 | Pulso B |
+| Botón | SW | Pin 15 | GPIO 22 | Pulsador |
+
+### Sensor de Proximidad (HC-SR04)
+
+| Componente | Función | GPIO (BCM) | Pin Físico | Notas |
+|------------|---------|------------|------------|-------|
+| VCC | Alimentación | - | Pin 2 | 5V directo |
+| Trig | Disparador | GPIO 23 | Pin 16 | Salida desde la Raspberry Pi |
+| Echo | Receptor | GPIO 24 | Pin 18 | Divisor de tensión 1k/2k |
+| GND | Tierra | - | Pin 6 | Masa común |
+
+
+### Sensor PIR (HC-SR501)
+
+| Componente | Función | GPIO (BCM) | Pin Físico | Notas |
+|------------|---------|------------|------------|-------|
+| VCC | Alimentación | - | Pin 4 | 5V directo |
+| OUT | Señal | GPIO 25 | Pin 22 | Señal de salida |
+| GND | Tierra | - | Pin 14 | Masa común |
+
 ---
 
 ## 2. Arquitectura de Software y Patrones
