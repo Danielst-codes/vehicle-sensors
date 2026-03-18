@@ -11,6 +11,8 @@ import respuestas.RabbitMQOrdenesSender;
 import sensor.SensorData;
 import static net.logstash.logback.argument.StructuredArguments.fields;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.security.DomainCombiner;
 
 
@@ -20,11 +22,25 @@ import java.security.DomainCombiner;
         private Channel channel;
         private Connection connection;
         private static final Logger logger = LoggerFactory.getLogger(RabbitMQReciver.class);
+        private int puerto; 
 
         public RabbitMQReciver() {
+
+        try (BufferedReader br = new BufferedReader(new FileReader("conexion_config.txt"))) {
+            String linea;
+            linea = br.readLine();
+            if (linea != null){
+                 puerto = Integer.parseInt(linea);
+            }
+               
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("rabbitmq");
-        factory.setPort(5672);
+        factory.setPort(puerto);
 
             while (this.channel == null) { // Se queda aquí hasta que conecte
                 try {
